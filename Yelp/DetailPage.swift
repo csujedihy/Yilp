@@ -37,9 +37,11 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FunctionCell", forIndexPath: indexPath) as! FunctionCell
         cell.functionNameLabel.text = functionList[indexPath.row]
+        print("row num \(indexPath.row) text \(cell.functionNameLabel.text)")
         cell.functionIconView.image = UIImage(named: imageList[indexPath.row])
-        if indexPath.row == functionList.count - 1 {
-            let seperator = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 0.5))
+
+        if indexPath.row < 10 {
+            let seperator = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 1))
             seperator.backgroundColor = UIColor.lightGrayColor()
             cell.addSubview(seperator)
         }
@@ -58,22 +60,14 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         functionTableView.rowHeight = UITableViewAutomaticDimension
         functionTableView.dataSource = self
         functionTableView.delegate = self
-        functionTableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 0.01))
-
-
+        if #available(iOS 9, *) {
+            functionTableView.cellLayoutMarginsFollowReadableWidth = false
+        }
+        let seperator = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 1))
+        seperator.backgroundColor = UIColor.lightGrayColor()
+        functionTableView.tableFooterView = seperator
         functionTableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 0.01))
         
-        
-        
-        
-        
-//        if let thumbViewUrl = business.imageURL {
-//            thumbView.setImageWithURL(thumbViewUrl)
-//        }
-//        addressLabel.text = business.address
-
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
