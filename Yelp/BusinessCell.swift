@@ -22,7 +22,7 @@ class BusinessCell: UITableViewCell {
     
     @IBOutlet weak var kindLabel: UILabel!
     @IBOutlet weak var rateBarImage: UIImageView!
-    
+    var businessId:String = ""
     // why this works?
     var business: Business! {
         didSet {
@@ -32,7 +32,11 @@ class BusinessCell: UITableViewCell {
             addressLabel.text = business.address
             kindLabel.text = business.categories
             rateBarImage.setImageWithURL(business.ratingImageURL!)
-            thumbView.setImageWithURL(business.imageURL!)
+            if let thumbViewUrl = business.imageURL {
+                thumbView.setImageWithURL(thumbViewUrl)
+            }
+            businessId = business.id!
+            
         }
     }
     

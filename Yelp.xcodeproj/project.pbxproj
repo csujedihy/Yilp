@@ -16,6 +16,10 @@
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
 		90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */; };
+		C1F22D291C6BB7A400354DDA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D281C6BB7A400354DDA /* SwitchCell.swift */; };
+		C1F22D2B1C6C076C00354DDA /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D2A1C6C076C00354DDA /* DetailPage.swift */; };
+		C1F22D331C6D0DD900354DDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F22D321C6D0DD900354DDA /* MapKit.framework */; };
+		C1F22D351C6D159200354DDA /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D341C6D159200354DDA /* FunctionCell.swift */; };
 		C1FAFA8B1C69841D00C249A4 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAFA8A1C69841D00C249A4 /* BusinessCell.swift */; };
 		C1FAFA8D1C6B061400C249A4 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAFA8C1C6B061400C249A4 /* FiltersViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +50,10 @@
 		97D8B2E3FFD1AF4F4A707E47 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD540129B10DFE60E8C24E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C1F22D281C6BB7A400354DDA /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		C1F22D2A1C6C076C00354DDA /* DetailPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
+		C1F22D321C6D0DD900354DDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C1F22D341C6D159200354DDA /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
 		C1FAFA8A1C69841D00C249A4 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		C1FAFA8C1C6B061400C249A4 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1F22D331C6D0DD900354DDA /* MapKit.framework in Frameworks */,
 				90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +160,7 @@
 			children = (
 				22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */,
 				C1FAFA8C1C6B061400C249A4 /* FiltersViewController.swift */,
+				C1F22D2A1C6C076C00354DDA /* DetailPage.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -158,6 +168,7 @@
 		4A7CA25ACD374CA0AC966A24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1F22D321C6D0DD900354DDA /* MapKit.framework */,
 				AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -167,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				C1FAFA8A1C69841D00C249A4 /* BusinessCell.swift */,
+				C1F22D281C6BB7A400354DDA /* SwitchCell.swift */,
+				C1F22D341C6D159200354DDA /* FunctionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -336,6 +349,9 @@
 				C1FAFA8B1C69841D00C249A4 /* BusinessCell.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
 				22AAAA991AEA0A9700A544AF /* Business.swift in Sources */,
+				C1F22D351C6D159200354DDA /* FunctionCell.swift in Sources */,
+				C1F22D2B1C6C076C00354DDA /* DetailPage.swift in Sources */,
+				C1F22D291C6BB7A400354DDA /* SwitchCell.swift in Sources */,
 				222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */,
 				C1FAFA8D1C6B061400C249A4 /* FiltersViewController.swift in Sources */,
 				222D8A5B19CCF9F900D2DB53 /* AppDelegate.swift in Sources */,

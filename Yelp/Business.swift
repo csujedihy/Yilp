@@ -9,17 +9,46 @@
 import UIKit
 
 class Business: NSObject {
+    let id: String?
     let name: String?
     let address: String?
     let imageURL: NSURL?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
+    let ratingLargeImageURL: NSURL?
     let reviewCount: NSNumber?
+    let location: NSDictionary?
+    let locationDisplayAddress: [String]?
+    let timeStart: Int?
+    let timeEnd: Int?
+    
     
     init(dictionary: NSDictionary) {
-        name = dictionary["name"] as? String
-        
+        self.location = dictionary["location"] as? NSDictionary
+        if let dict = self.location {
+            self.locationDisplayAddress = dict["display_address"] as? [String]
+        } else {
+            self.locationDisplayAddress = nil
+        }
+        if let dealsDict = dictionary["deals"] as? NSDictionary {
+            self.timeStart = dealsDict["time_start"] as? Int
+            self.timeEnd = dealsDict["time_end"] as? Int
+        } else {
+            self.timeStart = nil
+            self.timeEnd = nil
+        }
+
+        let largeImageUrlString = dictionary["rating_img_url_large"] as? String
+    
+        if let url = largeImageUrlString {
+            self.ratingLargeImageURL = NSURL(string: url)
+        } else {
+            self.ratingLargeImageURL = nil
+        }
+    
+        self.name = dictionary["name"] as? String
+        self.id = dictionary["id"] as? String
         let imageURLString = dictionary["image_url"] as? String
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
