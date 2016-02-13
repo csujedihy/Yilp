@@ -11,18 +11,15 @@ import UIKit
 class BusinessCell: UITableViewCell {
 
     @IBOutlet weak var thumbView: UIImageView!
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    
     @IBOutlet weak var reviewsNumLabel: UILabel!
-    
     @IBOutlet weak var addressLabel: UILabel!
-    
     @IBOutlet weak var kindLabel: UILabel!
     @IBOutlet weak var rateBarImage: UIImageView!
     var businessId:String = ""
+    
     // why this works?
     var business: Business! {
         didSet {
@@ -36,7 +33,6 @@ class BusinessCell: UITableViewCell {
                 thumbView.setImageWithURL(thumbViewUrl)
             }
             businessId = business.id!
-            
         }
     }
     

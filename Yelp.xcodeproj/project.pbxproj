@@ -16,6 +16,8 @@
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
 		90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */; };
+		C11FAF551C6FC27500224EC7 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF541C6FC27500224EC7 /* Artwork.swift */; };
+		C11FAF571C6FCE9D00224EC7 /* BorderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */; };
 		C1F22D291C6BB7A400354DDA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D281C6BB7A400354DDA /* SwitchCell.swift */; };
 		C1F22D2B1C6C076C00354DDA /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D2A1C6C076C00354DDA /* DetailPage.swift */; };
 		C1F22D331C6D0DD900354DDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F22D321C6D0DD900354DDA /* MapKit.framework */; };
@@ -50,6 +52,8 @@
 		97D8B2E3FFD1AF4F4A707E47 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD540129B10DFE60E8C24E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C11FAF541C6FC27500224EC7 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderUIView.swift; sourceTree = "<group>"; };
 		C1F22D281C6BB7A400354DDA /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		C1F22D2A1C6C076C00354DDA /* DetailPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
 		C1F22D321C6D0DD900354DDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -101,6 +105,7 @@
 		222D8A5719CCF9F900D2DB53 /* Yelp */ = {
 			isa = PBXGroup;
 			children = (
+				C11FAF511C6FC1E600224EC7 /* Helpers */,
 				C1FAFA891C6983FE00C249A4 /* Views */,
 				22AAAA9A1AEA0AA100A544AF /* Models */,
 				222D8A7A19CCFAAA00D2DB53 /* API */,
@@ -174,12 +179,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C11FAF511C6FC1E600224EC7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C11FAF541C6FC27500224EC7 /* Artwork.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		C1FAFA891C6983FE00C249A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C1FAFA8A1C69841D00C249A4 /* BusinessCell.swift */,
 				C1F22D281C6BB7A400354DDA /* SwitchCell.swift */,
 				C1F22D341C6D159200354DDA /* FunctionCell.swift */,
+				C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -346,6 +360,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11FAF551C6FC27500224EC7 /* Artwork.swift in Sources */,
+				C11FAF571C6FCE9D00224EC7 /* BorderUIView.swift in Sources */,
 				C1FAFA8B1C69841D00C249A4 /* BusinessCell.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
 				22AAAA991AEA0A9700A544AF /* Business.swift in Sources */,

@@ -7,28 +7,27 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     weak var business: Business!
     var businessId: String = ""
     var functionList: [String] = ["Directions", "Call"]
     var imageList: [String] = ["direction", "phone"]
+    let regionRadius: CLLocationDistance = 1000
     
+    @IBOutlet weak var panalBelowMapContainAddress: UIView!
+    @IBOutlet weak var addressBelowMap: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var rateImageView: UIImageView!
-    
     @IBOutlet weak var reviewCountLabel: UILabel!
-    
     @IBOutlet weak var categoryLabel: UILabel!
     
     @IBOutlet weak var hoursLabel: UILabel!
-    
-    
     @IBOutlet weak var functionTableView: UITableView!
-    
-
+        
+    @IBOutlet weak var mapView: MKMapView!
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return functionList.count
@@ -42,7 +41,7 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         if indexPath.row < 10 {
             let seperator = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 1))
-            seperator.backgroundColor = UIColor.lightGrayColor()
+            seperator.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 243/255, alpha: 1.0)
             cell.addSubview(seperator)
         }
         return cell
@@ -67,8 +66,52 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         seperator.backgroundColor = UIColor.lightGrayColor()
         functionTableView.tableFooterView = seperator
         functionTableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 0.01))
+
+        let location = business?.location
+        if let coordinate = business?.location?["coordinate"] {
+            let name: String = business.name! as String
+            let displayAddress: String = (location!["display_address"] as! [String]).joinWithSeparator(", ")
+            addressBelowMap.text = displayAddress
+            let artwork = BusinessOnMap(title: name,
+                locationName: displayAddress,
+                discipline: "Restuarant",
+                coordinate: CLLocationCoordinate2D(latitude: coordinate["latitude"] as! Double, longitude: coordinate["longitude"] as! Double))
+            
+            let initialLocatoin = CLLocation(latitude: coordinate["latitude"] as! Double, longitude: coordinate["longitude"] as! Double)
+            centerMapOnLocation(initialLocatoin)
+            mapView.addAnnotation(artwork)
+        
+        }
         
     }
+    
+//    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        let cell: FunctionCell = tableView.cellForRowAtIndexPath(indexPath) as! FunctionCell
+//        print("delegate should hightlight")
+////        cell.selectedBackgroundView = 
+//        cell.backgroundColor = UIColor.blackColor()
+//        return true
+//    }
+//    
+//    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+//        let cell: FunctionCell = tableView.cellForRowAtIndexPath(indexPath) as! FunctionCell
+//        cell.backgroundColor = UIColor.whiteColor()
+//    
+//    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell: FunctionCell = tableView.cellForRowAtIndexPath(indexPath) as! FunctionCell
+        cell.selected = false
+        cell.backgroundColor = UIColor.whiteColor()
+    }
+
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinaterRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinaterRegion, animated: true)
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
