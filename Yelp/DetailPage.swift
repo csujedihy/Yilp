@@ -15,6 +15,7 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var functionList: [String] = ["Directions", "Call"]
     var imageList: [String] = ["direction", "phone"]
     let regionRadius: CLLocationDistance = 1000
+    weak var mapObj: BusinessOnMap?
     
     @IBOutlet weak var panalBelowMapContainAddress: UIView!
     @IBOutlet weak var addressBelowMap: UILabel!
@@ -38,8 +39,8 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.functionNameLabel.text = functionList[indexPath.row]
         print("row num \(indexPath.row) text \(cell.functionNameLabel.text)")
         cell.functionIconView.image = UIImage(named: imageList[indexPath.row])
-
-        if indexPath.row < 10 {
+        
+        if true {
             let seperator = UIView(frame: CGRect(x: 0.0, y: 0.0, width: functionTableView.bounds.size.width, height: 1))
             seperator.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 243/255, alpha: 1.0)
             cell.addSubview(seperator)
@@ -72,16 +73,18 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let name: String = business.name! as String
             let displayAddress: String = (location!["display_address"] as! [String]).joinWithSeparator(", ")
             addressBelowMap.text = displayAddress
-            let artwork = BusinessOnMap(title: name,
+            let annotation = BusinessOnMap(title: name,
                 locationName: displayAddress,
                 discipline: "Restuarant",
                 coordinate: CLLocationCoordinate2D(latitude: coordinate["latitude"] as! Double, longitude: coordinate["longitude"] as! Double))
             
+            mapObj = annotation
             let initialLocatoin = CLLocation(latitude: coordinate["latitude"] as! Double, longitude: coordinate["longitude"] as! Double)
             centerMapOnLocation(initialLocatoin)
-            mapView.addAnnotation(artwork)
+            mapView.addAnnotation(annotation)
         
         }
+        
         
     }
     
@@ -103,6 +106,14 @@ class DetailPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell: FunctionCell = tableView.cellForRowAtIndexPath(indexPath) as! FunctionCell
         cell.selected = false
         cell.backgroundColor = UIColor.whiteColor()
+        if indexPath.row == 0 {
+            mapObj?.openMapForPlace()
+        } else if indexPath.row == 1 {
+            if let phoneNumber = business?.phoneNumber {
+                let url: NSURL = NSURL(string: "telprompt://\(phoneNumber)")!
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
     }
 
     

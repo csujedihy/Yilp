@@ -131,6 +131,11 @@
                                 <segue destination="L0A-mo-baR" kind="modal" identifier="filterSegue" id="cQA-BP-VcK"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="Wix-Mq-hIz">
+                            <connections>
+                                <segue destination="8M9-DZ-2nZ" kind="modal" identifier="showMapSegue" id="FE9-XH-oci"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -215,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbv-nj-LJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="420"/>
+            <point key="canvasLocation" x="2073" y="470"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v03-yV-DMy">
@@ -233,7 +238,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wT-Kw-F1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953.60000000000002" y="338.90666666666664"/>
+            <point key="canvasLocation" x="886" y="-208"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wYj-3p-CZC">
@@ -251,7 +256,52 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAD-iZ-sTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2192" y="-285"/>
+            <point key="canvasLocation" x="2073" y="-208"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="z20-B4-9et">
+            <objects>
+                <viewController id="8M9-DZ-2nZ" customClass="MapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="82s-95-B6J"/>
+                        <viewControllerLayoutGuide type="bottom" id="NQr-qs-kjf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J7R-Xd-g8Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="N0a-FS-wyy">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-oD-SOg">
+                                <rect key="frame" x="11" y="28" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="e9p-EV-BD9"/>
+                                    <constraint firstAttribute="width" constant="15" id="pKI-by-oeP"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="close"/>
+                                <connections>
+                                    <action selector="closeOnTap:" destination="8M9-DZ-2nZ" eventType="touchUpInside" id="1uT-em-8yG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LXg-oD-SOg" firstAttribute="leading" secondItem="J7R-Xd-g8Y" secondAttribute="leading" constant="11" id="9nF-np-6ZC"/>
+                            <constraint firstItem="N0a-FS-wyy" firstAttribute="leading" secondItem="J7R-Xd-g8Y" secondAttribute="leading" id="LEG-Oc-VUK"/>
+                            <constraint firstAttribute="trailing" secondItem="N0a-FS-wyy" secondAttribute="trailing" id="UGP-es-kZG"/>
+                            <constraint firstItem="LXg-oD-SOg" firstAttribute="top" secondItem="82s-95-B6J" secondAttribute="bottom" constant="8" id="ivb-YU-vXL"/>
+                            <constraint firstItem="NQr-qs-kjf" firstAttribute="top" secondItem="N0a-FS-wyy" secondAttribute="bottom" id="pqE-47-UOs"/>
+                            <constraint firstItem="N0a-FS-wyy" firstAttribute="top" secondItem="82s-95-B6J" secondAttribute="bottom" id="qTz-Ya-QvY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="N0a-FS-wyy" id="zXP-h8-2xZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1v-B5-FWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="-501"/>
         </scene>
         <!--Detail Page-->
         <scene sceneID="7y0-Oo-jvi">
@@ -451,7 +501,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQT-PG-jwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="-208"/>
+            <point key="canvasLocation" x="1711" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="128" height="128"/>
+    </resources>
 </document>

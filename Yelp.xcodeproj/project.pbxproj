@@ -16,8 +16,10 @@
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
 		90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */; };
-		C11FAF551C6FC27500224EC7 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF541C6FC27500224EC7 /* Artwork.swift */; };
+		C11FAF551C6FC27500224EC7 /* BusinessOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF541C6FC27500224EC7 /* BusinessOnMap.swift */; };
 		C11FAF571C6FCE9D00224EC7 /* BorderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */; };
+		C11FAF591C6FDDBB00224EC7 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF581C6FDDBB00224EC7 /* InfiniteScrollActivityView.swift */; };
+		C11FAF5B1C6FEE2100224EC7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FAF5A1C6FEE2100224EC7 /* MapViewController.swift */; };
 		C1F22D291C6BB7A400354DDA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D281C6BB7A400354DDA /* SwitchCell.swift */; };
 		C1F22D2B1C6C076C00354DDA /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F22D2A1C6C076C00354DDA /* DetailPage.swift */; };
 		C1F22D331C6D0DD900354DDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F22D321C6D0DD900354DDA /* MapKit.framework */; };
@@ -52,8 +54,10 @@
 		97D8B2E3FFD1AF4F4A707E47 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD540129B10DFE60E8C24E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C11FAF541C6FC27500224EC7 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		C11FAF541C6FC27500224EC7 /* BusinessOnMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessOnMap.swift; sourceTree = "<group>"; };
 		C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderUIView.swift; sourceTree = "<group>"; };
+		C11FAF581C6FDDBB00224EC7 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		C11FAF5A1C6FEE2100224EC7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C1F22D281C6BB7A400354DDA /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		C1F22D2A1C6C076C00354DDA /* DetailPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
 		C1F22D321C6D0DD900354DDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -155,6 +159,7 @@
 		22AAAA9A1AEA0AA100A544AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C11FAF541C6FC27500224EC7 /* BusinessOnMap.swift */,
 				22AAAA981AEA0A9700A544AF /* Business.swift */,
 			);
 			name = Models;
@@ -166,6 +171,7 @@
 				22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */,
 				C1FAFA8C1C6B061400C249A4 /* FiltersViewController.swift */,
 				C1F22D2A1C6C076C00354DDA /* DetailPage.swift */,
+				C11FAF5A1C6FEE2100224EC7 /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -182,7 +188,6 @@
 		C11FAF511C6FC1E600224EC7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C11FAF541C6FC27500224EC7 /* Artwork.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				C1F22D281C6BB7A400354DDA /* SwitchCell.swift */,
 				C1F22D341C6D159200354DDA /* FunctionCell.swift */,
 				C11FAF561C6FCE9D00224EC7 /* BorderUIView.swift */,
+				C11FAF581C6FDDBB00224EC7 /* InfiniteScrollActivityView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 				TargetAttributes = {
 					222D8A5419CCF9F900D2DB53 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = F697GBXU4H;
 					};
 					222D8A6919CCF9F900D2DB53 = {
 						CreatedOnToolsVersion = 6.0;
@@ -360,11 +367,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C11FAF551C6FC27500224EC7 /* Artwork.swift in Sources */,
+				C11FAF591C6FDDBB00224EC7 /* InfiniteScrollActivityView.swift in Sources */,
+				C11FAF551C6FC27500224EC7 /* BusinessOnMap.swift in Sources */,
 				C11FAF571C6FCE9D00224EC7 /* BorderUIView.swift in Sources */,
 				C1FAFA8B1C69841D00C249A4 /* BusinessCell.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
 				22AAAA991AEA0A9700A544AF /* Business.swift in Sources */,
+				C11FAF5B1C6FEE2100224EC7 /* MapViewController.swift in Sources */,
 				C1F22D351C6D159200354DDA /* FunctionCell.swift in Sources */,
 				C1F22D2B1C6C076C00354DDA /* DetailPage.swift in Sources */,
 				C1F22D291C6BB7A400354DDA /* SwitchCell.swift in Sources */,
@@ -496,10 +505,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yelp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jedihy.Yelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -511,10 +523,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yelp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jedihy.Yelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;

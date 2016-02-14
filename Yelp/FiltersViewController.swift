@@ -36,7 +36,10 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if selectedCategories.count > 0 {
             filters["categories"] = selectedCategories
+        } else {
+            filters["categories"] = []
         }
+        
         delegate?.filtersView?(self, didUpdateFilters: filters, rawFiltersStates: switchStates)
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -67,6 +70,10 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
 
+        // setup color for navigation bar
+        self.navigationController?.navigationBar.barTintColor = UIColor.redColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
         categories = yelpCategories()
         // Do any additional setup after loading the view.
     }

@@ -9,14 +9,17 @@
 import UIKit
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
-
+    var pageOffset: Int = 0
+    let pageLimit: Int = 10
+    var filteredCategories = [String]()
+    var isMoreDataLoading = false
+    var loadingMoreView:InfiniteScrollActivityView?
     var searchBar: UISearchBar?
     var businesses = [Business]()
     var filteredData = [Business]()
     var currentFilterStates = [Int: Bool]()
     
     @IBOutlet weak var tableView: UITableView!
-    
     
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
         searchBar?.resignFirstResponder()
@@ -30,10 +33,45 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height + 50
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                
+                Business.searchWithTerm("Restaurants", offset: pageOffset, limit: pageLimit, sort: nil, categories: filteredCategories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+                    if let businesses = businesses {
+                        self.filteredData += businesses
+                        self.pageOffset += businesses.count
+
+                    }
+                    self.tableView.reloadData()
+                    self.isMoreDataLoading = false
+                    self.loadingMoreView!.stopAnimating()
+                }
+                
+            }
+        }
+    }
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor.redColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         // Should figure this out what does it exactly mean
         tableView.rowHeight = UITableViewAutomaticDimension        
         tableView.estimatedRowHeight = 120
@@ -44,33 +82,34 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         onTapGesture.delegate = self
         self.view.addGestureRecognizer(onTapGesture)
         
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
+    
+        
+        
         // the UIViewController comes with a navigationItem property
         // this will automatically be initialized for you if when the
         // view controller is added to a navigation controller's stack
         // you just need to set the titleView to be the search bar
         self.navigationItem.titleView = searchBar
         
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.filteredData = self.businesses
-            self.tableView.reloadData()
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
         
-
-/* Example of Yelp search with more search options specified
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
+        Business.searchWithTerm("Restaurants", offset: pageOffset, limit: pageLimit, sort: nil, categories: filteredCategories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+            if let businesses = businesses {
+                self.businesses = businesses
+                self.filteredData += self.businesses
+                self.tableView.reloadData()
+                self.pageOffset += self.filteredData.count
             }
+            
         }
-*/
     }
     
 
@@ -94,27 +133,17 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return filteredData.count
     }
     
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
         cell.business = filteredData[indexPath.row]
         return cell
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "filterSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -128,20 +157,38 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             detailPageController.businessId = cell.businessId
             detailPageController.business = cell.business
             print(cell.businessId)
-
+        
+        } else if segue.identifier == "showMapSegue" {
+            let mapViewController = segue.destinationViewController as! MapViewController
+            mapViewController.businesses = self.filteredData
+            
+            
         
         }
         
     }
     
     func filtersView(filtersView: FiltersViewController, didUpdateFilters filters: [String : AnyObject], rawFiltersStates: [Int: Bool]) {
-        let categories = filters["categories"] as? [String]
-        currentFilterStates = rawFiltersStates
-        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
-            
-            self.filteredData = businesses
-            self.tableView.reloadData()
+        if let categories = filters["categories"] as? [String] {
+            self.pageOffset = 0
+            filteredCategories = categories
+            currentFilterStates = rawFiltersStates
+            // since this is filter, we should clear the the array that stores all business object first and then inject all filtered data here
+            Business.searchWithTerm("Restaurants", offset: pageOffset, limit: pageLimit, sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+                if let businesses = businesses {
+                    self.filteredData = [Business]()
+                    self.businesses = businesses
+                    self.filteredData += businesses
+                    self.pageOffset += businesses.count
+                } else {
+                    self.filteredData = [Business]()
+                }
+                self.tableView.reloadData()
+
+                
+            }
         }
+
     }
 
 
