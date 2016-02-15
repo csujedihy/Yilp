@@ -112,22 +112,23 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            filteredData = businesses
-        } else {
-            filteredData = businesses.filter({(business: Business) -> Bool in
-                if business.name?.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
-                    return true
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            Business.searchWithTerm(searchText, offset: pageOffset, limit: pageLimit, sort: nil, categories: filteredCategories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+                if let businesses = businesses {
+                    self.pageOffset = 0
+                    self.filteredData = [Business]()
+                    self.businesses = businesses
+                    self.filteredData += businesses
+                    self.pageOffset += businesses.count
                 } else {
-                    return false
+                    self.filteredData = [Business]()
                 }
-            })
-        
+                self.tableView.reloadData()
+            }
         }
-        tableView.reloadData()
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
